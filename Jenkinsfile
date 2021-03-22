@@ -10,11 +10,13 @@ pipeline {
 				script{ 
 					
 						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
-						new_version = Integer.toString(NEW_VERSION)
+						hun = NEW_VERSION / 100
+						tens = (NEW_VERSION % 100)/10
+						ones = (NEW_VERSION % 100)%10
 					
 				}
 				echo " ${NEW_VERSION}"
-				echo "${new_version[0]} .  ${new_version[1]} . ${new_version[2]}"
+				echo "${hun} .  ${tens} . ${ones}"
 			}
         }
 		stage("test"){
