@@ -13,7 +13,7 @@ pipeline {
 			steps{ echo 'building the application'}	
 	} 
 		stage('Print Build Number') {
-			steps { echo ${BUILD_NUMBER} }
+			steps { echo "${BUILD_NUMBER}" }
         }
 		stage("test"){
 			steps{ echo 'testing the application'}	
