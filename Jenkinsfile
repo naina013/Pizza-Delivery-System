@@ -9,7 +9,7 @@ pipeline {
 			steps { 
 				script{ 
 					
-						NEW_VERSION =  1 + Integer.parseInt(BUILD_NUMBER)
+						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
 					
 				}
 				echo " ${NEW_VERSION}"
