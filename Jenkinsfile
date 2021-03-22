@@ -10,6 +10,7 @@ pipeline {
 				script{ 
 					
 						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
+						Integer.toString(NEW_VERSION)
 					
 				}
 				echo " ${NEW_VERSION}"
