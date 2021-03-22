@@ -1,11 +1,4 @@
-//static def printbn() {
-  //  sh '''
-    //#!/usr/bin/env bash
 
-    //echo ${BUILD_NUMBER} 
-    // directly access any Jenkins build-in environment variable
-    //'''
-//}
 pipeline {
     agent any 
 	stages{
@@ -13,7 +6,13 @@ pipeline {
 			steps{ echo 'building the application'}	
 	} 
 		stage('Print Build Number') {
-			steps { echo "${BUILD_NUMBER}" }
+			steps { 
+				script{
+					String NEW_VERSION = " 100 + ${BUILD_NUMBER} " ;
+				}
+				
+				echo (${NEW_VERSION[0]} + '.' + ${NEW_VERSION[1]} + '.' + ${NEW_VERSION[2]})
+			}
         }
 		stage("test"){
 			steps{ echo 'testing the application'}	
