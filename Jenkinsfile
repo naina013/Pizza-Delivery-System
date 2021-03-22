@@ -16,7 +16,7 @@ pipeline {
 					
 				}
 				echo " ${NEW_VERSION}"
-				echo "${hun} .  ${tens} . ${ones}"
+				println "${hun} .  ${tens} . ${ones}"
 			}
         }
 		stage("test"){
