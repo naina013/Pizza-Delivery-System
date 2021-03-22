@@ -10,7 +10,8 @@ pipeline {
 				script{ 
 					NEW_VERSION = " 100 + ${BUILD_NUMBER} "
 				}
-				 echo "${NEW_VERSION[0]} + . + ${NEW_VERSION[1]} + . + ${NEW_VERSION[2]}"
+				echo " ${NEW_VERSION}"
+				echo "${NEW_VERSION[0]} + . + ${NEW_VERSION[1]} + . + ${NEW_VERSION[2]}"
 			}
         }
 		stage("test"){
