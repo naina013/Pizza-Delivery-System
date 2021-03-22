@@ -10,9 +10,9 @@ pipeline {
 				script{ 
 					
 						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
-						hun = NEW_VERSION / 100
-						tens = (NEW_VERSION % 100)/10
-						ones = (NEW_VERSION % 100)%10
+						hun = Integer.parseInt(NEW_VERSION / 100)
+						tens = Integer.parseInt((NEW_VERSION % 100)/10)
+						ones = Integer.parseInt((NEW_VERSION % 100)%10)
 					
 				}
 				echo " ${NEW_VERSION}"
