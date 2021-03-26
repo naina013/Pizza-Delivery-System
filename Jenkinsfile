@@ -13,8 +13,7 @@ node(){
 				stage('BUILD'){
 					echo 'Build'
 					
-					sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh 
-					&& cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
+					sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
 					
 				}
 				}catch(e){
