@@ -10,15 +10,13 @@ node(){
 		tool name: 'Golang Installer', type: 'go'
 		
 		try{
-			...
 				stage('BUILD'){
 					echo 'Build'
-					...
-						sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh 
+					
+					sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh 
 					&& cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
-					...
+					
 				}
-				...
 				}catch(e){
 				currentBuild.result = "FAILED"
 				throw e
