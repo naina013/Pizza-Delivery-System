@@ -1,29 +1,28 @@
-node(){
-	dir("${env.BUILD_ID}"){
+//node(){
+//	dir("${env.BUILD_ID}"){
 		
 		//checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[credentialsId: 'GITHUB-cred', url: '<https://github.com/naina013/Pizza-Delivery-System/tree/Jenkinsfile>']],
 		//branches: [[name: 'refs/tags/*']]]
 		
-		env.GIT_TAG_NAME = gitTagName()
-		currentBuild.displayName = "#${BUILD_NUMBER}, ${JOB_NAME}, ${env.GIT_TAG_NAME}"
 		
-		tool name: 'Golang Installer', type: 'go'
 		
-		try{
-				stage('BUILD'){
-					echo 'Build'
-					
-					sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
-					
-				}
-				}catch(e){
-				currentBuild.result = "FAILED"
-				throw e
-				}finally{
-					notifyBuild(currentBuild.result)	
-		}
-	}
-}
+//		tool name: 'Golang Installer', type: 'go'
+		
+//		try{
+//				stage('BUILD'){
+//					echo 'Build'
+//					
+//					sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
+//					
+//				}
+//				}catch(e){
+//				currentBuild.result = "FAILED"
+//				throw e
+//				}finally{
+//					notifyBuild(currentBuild.result)	
+//		}
+//	}
+//}
 	
 
 
@@ -59,7 +58,8 @@ pipeline {
 		stage('Print Build Number') {
 			steps { 
 				script{ 
-					
+						env.GIT_TAG_NAME = gitTagName()
+						currentBuild.displayName = "#${BUILD_NUMBER}, ${JOB_NAME}, ${env.GIT_TAG_NAME}"
 						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
 						hun = (int)(NEW_VERSION / 100)
 						tens = (int)((NEW_VERSION % 100)/10)
@@ -68,6 +68,7 @@ pipeline {
 				}
 				echo " ${NEW_VERSION}"
 				echo " ${hun} . ${tens} . ${ones}"
+				sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
 			}
         }
 		stage("test"){
