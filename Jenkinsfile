@@ -26,6 +26,7 @@ pipeline {
     agent any 
 	stages{
 		 stage("testCheckout") {
+			 steps{
        		 checkout([$class: 'GitSCM', 
 		    branches: [[name: 'refs/tags/mytag']], 
 		    userRemoteConfigs: [[
@@ -33,6 +34,7 @@ pipeline {
 			refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
 			url: 'https://github.com/naina013/Pizza-Delivery-System/master.git']]
 		])
+			 }
     }
 		stage("build"){
 			steps{ echo 'building the application'}	
