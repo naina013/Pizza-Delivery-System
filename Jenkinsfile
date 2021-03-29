@@ -2,7 +2,7 @@
 String gitTagName(){
 	commit = getCommit()
 	if(commit){
-		desc = sh(script: "git describe --tag ${(git rev-parse --verify refs/remotes/origin/"master")}", returnStdout: true)?.trim()
+		desc = sh(script: 'git describe --tag $(git rev-parse --verify refs/remotes/origin)', returnStdout: true)?.trim()
 		if(isTag(desc)){
 			return desc
 		}
