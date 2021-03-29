@@ -1,8 +1,8 @@
 node(){
 	dir("${env.BUILD_ID}"){
 		
-		checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[credentialsId: 'GITHUB-cred', url: '<https://github.com/naina013/Pizza-Delivery-System>']],
-		branches: [[name: 'refs/tags/*']]]
+		//checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[credentialsId: 'GITHUB-cred', url: '<https://github.com/naina013/Pizza-Delivery-System>']],
+		//branches: [[name: 'refs/tags/*']]]
 		GIT_TAG_NAME = gitTagName()
 		currentBuild.displayName = "#${BUILD_NUMBER}, ${JOB_NAME}, ${GIT_TAG_NAME}"
 		
