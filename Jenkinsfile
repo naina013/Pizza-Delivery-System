@@ -30,13 +30,14 @@ node(){
 //for grab git tag
 String gitTagName(){
 	commit = getCommit()
-	if(commit){
-		desc = sh(script: "git describe --tags ${commit}", returnStdout: true)?.trim()
-		if(isTag(desc)){
-			return desc
-		}
-	}
-	return null
+	//if(commit){
+	//	desc = sh(script: "git describe --tags ${commit}", returnStdout: true)?.trim()
+	//	if(isTag(desc)){
+	//		return desc
+	//	}
+	//}
+	//return null
+	return commit
 }
 String getCommit(){
 	return sh(script: 'git rev-parse HEAD', returnStdout: true)?.trim()
