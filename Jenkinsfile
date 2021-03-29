@@ -68,7 +68,7 @@ pipeline {
 				}
 				echo " ${NEW_VERSION}"
 				echo " ${hun} . ${tens} . ${ones}"
-				sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
+			//	sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
 			}
         }
 		stage("test"){
