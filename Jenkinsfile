@@ -32,7 +32,7 @@ pipeline {
 		    userRemoteConfigs: [[
 			credentialsId: 'myCredentialsId', 
 			refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
-			url: 'https://github.com/naina013/Pizza-Delivery-System/master.git']]
+			url: 'https://github.com/naina013/Pizza-Delivery-System.git']]
 		])
 			 }
     }
