@@ -1,7 +1,7 @@
 node(){
 	checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: '<https://github.com/naina013/Pizza-Delivery-System.git>']], branches: [[name: 'refs/tags/*']]]
 	notifyBuild(currentBuild.result)
-}
+
 //for grab git tag
 String gitTagName(){
 	commit = getCommit()
