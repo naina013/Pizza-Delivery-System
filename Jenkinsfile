@@ -25,6 +25,15 @@ boolean isTag(String desc){
 pipeline {
     agent any 
 	stages{
+		 stage("testCheckout") {
+       		 checkout([$class: 'GitSCM', 
+		    branches: [[name: 'refs/tags/mytag']], 
+		    userRemoteConfigs: [[
+			credentialsId: 'myCredentialsId', 
+			refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
+			url: 'https://github.com/naina013/Pizza-Delivery-System/master.git']]
+		])
+    }
 		stage("build"){
 			steps{ echo 'building the application'}	
 	} 
