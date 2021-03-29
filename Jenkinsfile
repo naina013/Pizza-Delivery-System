@@ -1,14 +1,14 @@
 //for grab git tag
 String gitTagName(){
 	commit = getCommit()
-	//if(commit){
-	//	desc = sh(script: "git describe --tags ${commit}", returnStdout: true)?.trim()
-	//	if(isTag(desc)){
-	//		return desc
-	//	}
-	//}
-	//return null
-	return commit
+	if(commit){
+		desc = sh(script: "git describe --tags ${commit}", returnStdout: true)?.trim()
+		if(isTag(desc)){
+			return desc
+		}
+	}
+	return null
+	//return commit
 }
 String getCommit(){
 	return sh(script: 'git rev-parse HEAD', returnStdout: true)?.trim()
@@ -32,7 +32,7 @@ pipeline {
 			steps { 
 				script{ 
 					env.GIT_TAG_NAME = gitTagName()
-					currentBuild.displayName = "#${BUILD_NUMBER}, ${env.GIT_TAG_NAME}"
+					currentBuild.displayName = "#${BUILD_NUMBER},${JOB_NAME}, ${env.GIT_TAG_NAME}"
 						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
 						hun = (int)(NEW_VERSION / 100)
 						tens = (int)((NEW_VERSION % 100)/10)
