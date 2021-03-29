@@ -1,3 +1,7 @@
+node(){
+	checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: '<https://github.com/naina013/Pizza-Delivery-System.git>']], branches: [[name: 'refs/tags/*']]]
+	notifyBuild(currentBuild.result)
+}
 //for grab git tag
 String gitTagName(){
 	commit = getCommit()
@@ -25,17 +29,6 @@ boolean isTag(String desc){
 pipeline {
     agent any 
 	stages{
-		 stage("testCheckout") {
-			 steps{
-       		 checkout([$class: 'GitSCM', 
-		    branches: [[name: 'refs/tags/mytag']], 
-		    userRemoteConfigs: [[
-			credentialsId: 'myCredentialsId', 
-			refspec: '+refs/tags/*:refs/remotes/origin/tags/*', 
-			url: 'https://github.com/naina013/Pizza-Delivery-System.git']]
-		])
-			 }
-    }
 		stage("build"){
 			steps{ echo 'building the application'}	
 	} 
