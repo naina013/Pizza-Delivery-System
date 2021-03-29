@@ -1,9 +1,10 @@
-//node(){
-//	dir("${env.BUILD_ID}"){
+node(){
+	dir("${env.BUILD_ID}"){
 		
-		//checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[credentialsId: 'GITHUB-cred', url: '<https://github.com/naina013/Pizza-Delivery-System/tree/Jenkinsfile>']],
-		//branches: [[name: 'refs/tags/*']]]
-		
+		checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[credentialsId: 'GITHUB-cred', url: '<https://github.com/naina013/Pizza-Delivery-System>']],
+		branches: [[name: 'refs/tags/*']]]
+		GIT_TAG_NAME = gitTagName()
+		currentBuild.displayName = "#${BUILD_NUMBER}, ${JOB_NAME}, ${GIT_TAG_NAME}"
 		
 		
 //		tool name: 'Golang Installer', type: 'go'
@@ -21,8 +22,8 @@
 //				}finally{
 //					notifyBuild(currentBuild.result)	
 //		}
-//	}
-//}
+	}
+}
 	
 
 
@@ -58,8 +59,6 @@ pipeline {
 		stage('Print Build Number') {
 			steps { 
 				script{ 
-						GIT_TAG_NAME = gitTagName()
-						//currentBuild.displayName = "#${BUILD_NUMBER}, ${JOB_NAME}, ${GIT_TAG_NAME}"
 						NEW_VERSION =  100 + Integer.parseInt(BUILD_NUMBER)
 						hun = (int)(NEW_VERSION / 100)
 						tens = (int)((NEW_VERSION % 100)/10)
