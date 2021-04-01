@@ -1,6 +1,15 @@
 //change1
 node(){
 	checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/naina013/Pizza-Delivery-System.git']], branches: [[name: 'refs/tags/*']]]
+	
+	try{
+		sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
+	}catch(e){
+		currentBuild.result = "Failed"
+		throw e
+	} finally{
+		notifyBuild(currentBuild.result)
+	}
 }
 //for grab git tag
 String gitTagName(){
@@ -31,15 +40,7 @@ pipeline {
 	stages{
 		stage("build"){
 			steps{ 
-				try{
 				echo 'building the application'
-				sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
-			}catch(e){
-			currentBuild.result = "Failed"
-			throw e
-			} finally{
-			notifyBuild(currentBuild.result)
-			}
 		}
 	}
 		
