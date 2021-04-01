@@ -29,19 +29,19 @@ boolean isTag(String desc){
 pipeline {
     agent any 
 	stages{
-		try{
 		stage("build"){
 			steps{ 
+				try{
 				echo 'building the application'
 				sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
-			}	
-	} 
-		}catch(e){
+			}catch(e){
 			currentBuild.result = "Failed"
 			throw e
-		} finally{
+			} finally{
 			notifyBuild(currentBuild.result)
+			}
 		}
+	}
 		
 		stage('Print Build Number') {
 			steps { 
