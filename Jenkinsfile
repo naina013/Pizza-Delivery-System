@@ -1,7 +1,7 @@
 //change1
 node(){
 	checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/naina013/Pizza-Delivery-System.git']], branches: [[name: 'refs/tags/*']]]
-	
+	tool name: 'Golang Installer' , type: 'go'
 	try{
 		sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
 	}catch(e){
