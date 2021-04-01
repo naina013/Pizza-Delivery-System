@@ -32,7 +32,7 @@ pipeline {
 		stage("build"){
 			steps{ 
 				echo 'building the application'
-				sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersion.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
+				sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/config/shell/appVersionDev.sh && cd ${WORKSPACE}/${BUILD_ID}/config/shell/ && ./appVersionDev.sh'
 			}	
 	} 
 		stage('Print Build Number') {
