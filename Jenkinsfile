@@ -1,7 +1,9 @@
 //change1
 node(){
 	checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/naina013/Pizza-Delivery-System.git']], branches: [[name: 'refs/tags/*']]]
-	tool name: 'Golang Installer' , type: 'go'
+	
+	env.GIT_TAG_NAME = gitTagName()
+	currentBuild.displayName = "#${BUILD_NUMBER},${JOB_NAME}, ${env.GIT_TAG_NAME}"
 	try{
 		sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
 	}catch(e){
@@ -44,14 +46,14 @@ pipeline {
 		}
 	}
 		
-		stage('Print Build Number') {
-			steps { 
-				script{ 
-					env.GIT_TAG_NAME = gitTagName()
-					currentBuild.displayName = "#${BUILD_NUMBER},${JOB_NAME}, ${env.GIT_TAG_NAME}"	
-				}
-			}
-        }
+		//stage('Print Build Number') {
+			//steps { 
+				//script{ 
+					//env.GIT_TAG_NAME = gitTagName()
+					//currentBuild.displayName = "#${BUILD_NUMBER},${JOB_NAME}, ${env.GIT_TAG_NAME}"	
+				//}
+			//}
+      //  }
 		stage("test"){
 			steps{ echo 'testing the application'}	
 	} 
