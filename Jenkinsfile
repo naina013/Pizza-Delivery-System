@@ -1,5 +1,6 @@
 //change1
 node(){
+	dir("${env.BUILD_ID}"){
 	checkout scm: [$class: 'GitSCM', userRemoteConfigs: [[url: 'https://github.com/naina013/Pizza-Delivery-System.git']], branches: [[name: 'refs/tags/*']]]
 	
 	env.GIT_TAG_NAME = gitTagName()
@@ -7,13 +8,14 @@ node(){
 	try{
 		stage('BUILD'){
 			echo 'BUILD'
-		sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
+			sh 'chmod 755 ${WORKSPACE}/${BUILD_ID}/appVersionDev.sh && cd ${WORKSPACE}/${BUILD_ID}/ && ./appVersionDev.sh'
 		}
 	}catch(e){
 		currentBuild.result = "Failed"
 		throw e
 	} finally{
 		notifyBuild(currentBuild.result)
+	}
 	}
 }
 //for grab git tag
