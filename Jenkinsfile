@@ -5,7 +5,10 @@ node(){
 	env.GIT_TAG_NAME = gitTagName()
 	currentBuild.displayName = "#${BUILD_NUMBER},${JOB_NAME}, ${env.GIT_TAG_NAME}"
 	try{
+		stage('BUILD'){
+			echo 'BUILD'
 		sh 'chmod 755 ${WORKSPACE}/appVersionDev.sh && cd ${WORKSPACE}/ && ./appVersionDev.sh'
+		}
 	}catch(e){
 		currentBuild.result = "Failed"
 		throw e
@@ -37,12 +40,12 @@ boolean isTag(String desc){
 	return result
 }
 
-pipeline {
-    agent any 
-	stages{
-		stage("build"){
-			steps{ 
-				echo 'building the application'
+//pipeline {
+  //  agent any 
+//	stages{
+//		stage("build"){
+//			steps{ 
+//				echo 'building the application'
 		}
 	}
 		
@@ -54,12 +57,12 @@ pipeline {
 				//}
 			//}
       //  }
-		stage("test"){
-			steps{ echo 'testing the application'}	
-	} 
-		stage("deploy"){
-			steps{ echo 'deploying the application'}	
-	} 
+//		stage("test"){
+//			steps{ echo 'testing the application'}	
+//	} 
+	//	stage("deploy"){
+	//		steps{ echo 'deploying the application'}	
+	//} 
 		
-    }
-}
+    //}
+//}
