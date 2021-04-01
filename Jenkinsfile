@@ -46,8 +46,8 @@ boolean isTag(String desc){
 //		stage("build"){
 //			steps{ 
 //				echo 'building the application'
-		}
-	}
+//		}
+//	}
 		
 		//stage('Print Build Number') {
 			//steps { 
